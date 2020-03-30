@@ -50,7 +50,6 @@ def get_keyboard_work():
     ]
     return InlineKeyboardMarkup(keyboard)
 
-@bot.callback_query_handler(func=lambda c:True)
 def keyboard_callback_handler(bot: Bot, update: Update):
     query = update.callback_query
     data = query.data
