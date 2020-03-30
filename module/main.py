@@ -55,7 +55,14 @@ def logo_keyboard():
     keyboard.add(*buttons)
     return keyboard
 
-work = ['More','Back']
+mini = ['More','Back']
+def mini_keyboard():
+    keyboard = types.InlineKeyboardMarkup(row_width=2)
+    buttons = [types.InlineKeyboardButton(text=i, callback_data=i) for i in mini]
+    keyboard.add(*buttons)
+    return keyboard
+
+work = ['Steve Jobs', 'Elon Musk']
 def work_keyboard():
     keyboard = types.InlineKeyboardMarkup(row_width=2)
     buttons = [types.InlineKeyboardButton(text=i, callback_data=i) for i in work]
@@ -63,11 +70,23 @@ def work_keyboard():
     return keyboard
 
 @bot.callback_query_handler(func=lambda x:True)
-def work_handler(callback_query):
-    message = callback_query.message
-    bot.send_message(chat_id = message.chat.id,
-            text = "_“The only way to do Great Work is to Love What You Do” (Steve Jobs)_",
-            parse_mode=ParseMode.MARKDOWN,
-            reply_markup = work_keyboard())
+def keyboard_handler(callback_query):
+    #message = callback_query.message
+    if callback_query.data == 'Work':
+        bot.send_message(chat_id = callback_query.message.chat.id,
+                text = "_“The only way to do Great Work is to Love What You Do” (Steve Jobs)._",
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup = mini_keyboard())
+    elif callback_query.data == 'Suffering':
+        bot.send_message(chat_id = callback_query.message.chat.id,
+                text = "_“No victory without suffering” (J. R. R. Tolkien)._",
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup = mini_keyboard())
+    elif callback_query.data == 'Relationships':
+        bot.send_message(chat_id = callback_query.message.chat.id,
+                text = "_“The best and most beautiful things in the world cannot be seen or even heard, but must be felt with the Heart” (Helen Keller)._",
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup = mini_keyboard())
+
 
 bot.polling()
