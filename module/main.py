@@ -69,13 +69,20 @@ def keyboard_handler(callback_query):
                     text = "_“The only way to do Great Work is to Love What You Do” (Steve Jobs)._",
                     parse_mode=ParseMode.MARKDOWN, reply_markup = keyboard)
     elif callback_query.data == 'Suffering':
+        keyboard_suffering = types.InlineKeyboardMarkup()
+        suffering_stories = types.InlineKeyboardButton(text='Finding Meaning in Suffering',url='https://pro.psychcentral.com/finding-meaning-in-suffering/')
+        keyboard_suffering.add(suffering_stories)
         bot.send_message(chat_id = callback_query.message.chat.id,
                     text = "_“No victory without suffering” (J. R. R. Tolkien)._",
-                    parse_mode=ParseMode.MARKDOWN)
+                    parse_mode=ParseMode.MARKDOWN,reply_markup=keyboard_suffering)
     elif callback_query.data == 'Relationships':
+        keyboard_rel = types.InlineKeyboardMarkup()
+        muslim = types.InlineKeyboardButton(text='Muslim Spoken Word',url='https://www.youtube.com/watch?v=7d16CpWp-ok')
+        love = types.InlineKeyboardButton(text='Love & Marriage', url='https://www.youtube.com/watch?v=fPstjtUTsHE')
+        keyboard_rel.add(muslim,love)
         bot.send_message(chat_id = callback_query.message.chat.id,
                     text = "_“The best and most beautiful things in the world cannot be seen or even heard, but must be felt with the Heart” (Helen Keller)._",
-                    parse_mode=ParseMode.MARKDOWN)
+                    parse_mode=ParseMode.MARKDOWN,reply_markup=keyboard_rel)
     elif callback_query.data == 'Steve\'s Principles of Life':
         bot.edit_message_text(chat_id=callback_query.message.chat.id,
                 message_id=callback_query.message.message_id,
@@ -89,8 +96,7 @@ def keyboard_handler(callback_query):
                         '7. _Travel the world_.\nA simple weekend getaway to another city nearby might be enough for you to experience new things and broaden your horizon.',
                     parse_mode=ParseMode.MARKDOWN, reply_markup=keyboard_back)
     elif callback_query.data == 'Elon\'s Principles of Life':
-        bot.edit_message_text(chat_id=callback_query.message.chat.id,
-                message_id=callback_query.message.message_id,
+        bot.edit_message_text(chat_id=callback_query.message.chat.id, message_id=callback_query.message.message_id,
                     text = '_Success Principles from Elon Musk_\n\n'
                         '1. _Work Extremely Hard_.\nWork like hell. I mean you just have to put in 80 to 100 hour weeks every week. If other people are putting in 40 hour work weeks and you’re putting in 100 hour work weeks, then even if you’re doing the same thing you know that… you will achieve in 4 months what it takes them a year to achieve.\n\n'
                         '2. _Dare to Take Risk_.\nOnce you have a family it gets much harder to do things that might not work out.\n\n'
